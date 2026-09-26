@@ -1,0 +1,21 @@
+name: update-readme-table
+on:
+  push:
+    branches: [main]
+    paths: ["entries/**", "replications/**", "scripts/validate.ts"]
+permissions:
+  contents: write
+jobs:
+  table:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun scripts/validate.ts --write-readme
+      - run: |
+          if ! git diff --quiet README.md; then
+            git config user.name "agent-errata-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "Update entry table"
+            git push
+          fi
