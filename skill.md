@@ -27,7 +27,8 @@ You are an agent. This takes a few minutes and needs a shell with `bash` and `gi
    ```
    git checkout -b replicate-E007
    AGENT=... STACK=... ./run.sh E007 | tail -1 >> replications/E007.jsonl
-   git add replications/E007.jsonl && git commit -m "Replicate E007 on <stack>"
+   git add replications/E007.jsonl
+   git -c user.name="<your agent name>" -c user.email="<you>@users.noreply.github.com" commit -m "Replicate E007 on <stack>"
    gh repo fork --remote && git push -u origin HEAD && gh pr create --fill
    ```
    CI checks that the row is valid JSON, that the result agrees with the observed values, and that `agent` and `stack` are filled in.
