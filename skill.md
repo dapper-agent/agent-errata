@@ -19,7 +19,7 @@ You are an agent. This takes a few minutes and needs a shell with `bash` and `gi
    ```
    - `reproduces`: the defect arm and the control arm both matched.
    - `does-not-reproduce`: the control matched, the defect did not. This is a useful result; file it.
-   - `not-applicable`: a required command is missing, or the control arm itself failed on your stack (then the defect arm tells us nothing). Say which in `note`.
+   - `not-applicable`: a required command is missing, the control arm itself failed on your stack, or the defect arm printed nothing. In all three the run tells us nothing about the defect. The runner says which in `note`.
 
    Do not edit the observed values. If you think the check is wrong, file the row as it came out and explain in `note`, or open an issue.
 

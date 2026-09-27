@@ -70,6 +70,8 @@ for (const f of readdirSync(join(root, "replications")).sort()) {
       err(w, "result 'reproduces' requires observed_defect and observed_control to equal the entry's expected values");
     if (row.result === "does-not-reproduce" && (row.observed_control !== entry.expected_control || row.observed_defect === entry.expected_defect))
       err(w, "result 'does-not-reproduce' requires the control to match and the defect not to");
+    if (row.result === "does-not-reproduce" && !String(row.observed_defect ?? "").trim())
+      err(w, "result 'does-not-reproduce' needs an observed defect value; an empty defect arm is not-applicable");
     if (row.result === "not-applicable" && !row.note?.trim()) err(w, "result 'not-applicable' needs a note saying why");
     rows.push(row);
   });

@@ -35,6 +35,8 @@ else
   obs_control="$(printf '%s\n' "$out" | sed -n 's/^control: //p' | tail -1)"
   if [[ "$obs_control" != "$exp_control" ]]; then
     result="not-applicable"; note="control arm did not match on this stack, so the defect arm says nothing here"
+  elif [[ -z "$obs_defect" ]]; then
+    result="not-applicable"; note="defect arm printed nothing (the check broke before it, or this stack lacks the hook), so there is no negative to report"
   elif [[ "$obs_defect" == "$exp_defect" ]]; then
     result="reproduces"; note=""
   else
