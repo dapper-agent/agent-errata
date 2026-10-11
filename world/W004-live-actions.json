@@ -1,0 +1,522 @@
+[
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Booking--6",
+  "site": "https://www.booking.com/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Book one room which provides breakfast, and airport shuttle from Jan 22 to 25 in Los Angeles."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Booking--11",
+  "site": "https://www.booking.com/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Reserve a hotel in downtown Chicago with a rating of 9 or higher for a stay from March 20-27, 2024, which offers free cancellation and includes a fitness center."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Booking--13",
+  "site": "https://www.booking.com/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find and book a hotel in Paris with suitable accommodations for a family of four (two adults and two children) offering free cancellation for the dates of February 14-21, 2024."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Booking--14",
+  "site": "https://www.booking.com/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Book a highly-rated hotel with a swimming pool and free WiFi near the Louvre Museum in Paris for the weekend of March 3-5, 2024."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Google Flights--0",
+  "site": "https://www.google.com/travel/flights/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Book a journey with return option on same day from Edinburg to Manchester on December 28th and show me the lowest price option available."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Google Flights--20",
+  "site": "https://www.google.com/travel/flights/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Book a round-trip flight from San Francisco to Berlin, departing on March 5, 2024, and returning on March 12, 2024, and find the option with the shortest total travel time."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Google Map--13",
+  "site": "https://www.google.com/maps/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find a parking lot in Gloucester and book a ride from there to North Plymouth, view the map to understand the route better."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Amazon--5",
+  "site": "https://www.amazon.com/",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find a Blue iPhone 12 Pro 128gb and add to cart."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Amazon--15",
+  "site": "https://www.amazon.com/",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find a pair of mens running shoes in black, size 7, 4+ stars and under $50 and add them to my cart on Amazon."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "GitHub--40",
+  "site": "https://github.com/",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Select Sign up on the GitHub homepage to see if email 'test123@gmail.com' already exists."
+ },
+ {
+  "benchmark": "WebVoyager",
+  "file": "https://raw.githubusercontent.com/MinorJerry/WebVoyager/5a7896738c10bfb8b9edccce6bb0e0411f8ae569/data/WebVoyager_data.jsonl",
+  "commit_or_sha256": "MinorJerry/WebVoyager@5a7896738c10bfb8b9edccce6bb0e0411f8ae569 sha256:69b19fd86c23f1a500244a3724e039aa7ca6a1223d03e11eb10e308d4f11c488",
+  "task_id": "Google Search--15",
+  "site": "x.com (task starts at https://www.google.com/)",
+  "class": "sends_credentials",
+  "stop_instruction": false,
+  "instruction_verbatim": "Please try to log in to twitter with email: webagenttest@testmail.com and password: test123456. Let me know if the login was successful."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "59b7b990b4828bc305ab0d7ed6071b55",
+  "site": "www.landwatch.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Get owner-financing homesite land for sale in New Mexico, Luna County,  listed in the last 30 days, and contact the cheapest per acre land seller."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "34992feb69eb8e788faa06868b365c49",
+  "site": "www.dmv.virginia.gov",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Submit a request for vehicle registration renewal with title number X123456 and last 4 digits of VIN is 1234."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "c43a7dccf5c44f7b45a821e712dd1970",
+  "site": "www.healthline.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Take a newsletter subscription with my email id (buckeye.foobar@gmail.com) for Allergies and asthma, Anxiety and depression, nutrition, diabetes, breast cancer, and migraine with email id."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "9af05e392cf3f5a8ff17aa764ba5bda6",
+  "site": "www.bbb.org",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Get a quote from C and above-rated solar energy equipment company within 10 miles of Miami, Florida."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "b7258ee05d75e6c50673a59914db412e_110325",
+  "site": "www.traderjoes.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find the store location and hours of the closest Trader Joe's to zip code 90028 and set it as my home store."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "824eb7bb0ef1ce40bfd49c12182d9428_110325",
+  "site": "us.speedo.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Get the women's black one-piece swimsuit, size large, with the highest discount percentage, and add it to my cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "644a856c3897665e475e0dce50bf217d",
+  "site": "www.amazon.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find a pair of wireless headphones on Amazon with active noise canceling for $100 or less and add them to the cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "4c186c6ed888d0c8d4cf4adb39443080",
+  "site": "www.nba.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find a medium Devin Booker jersey and add it to the shopping cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "f2097f92a10d42a842c14179f422311e",
+  "site": "www.bestbuy.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add a $50 Uber gift card to the cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "a0a18ca6a3529f3e97c771aadd42d3a0_110325",
+  "site": "www.jcpenney.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add the best-selling men's T-shirt in large size, short sleeve, and Halloween event style to my cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "d7c955b47af68e01766fa86d0bee08a7",
+  "site": "www.apartments.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add Elevate at Chicago, IL, to favorites and show a virtual tour."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "33bd2cdcea4fcc42a09a8a1e4e5841c6_110325",
+  "site": "raisingcanes.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add a Box Combo to my bag with Diet Coke as the drink, and a Kids Combo with milk as the drink. Select the store closest to ZIP 10001 for pickup tomorrow at 12:00 PM."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "8689af4d33ce00bf2cdd8987d3bbfd86",
+  "site": "www.apple.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add the cheapest certified refurbished iPad Air with 256GB of storage in any shade of blue to my bag."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "c6c9dc6079677cef594cec2fa6b16602",
+  "site": "www.ikea.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add the cheapest black sofa with at least three seats, a leather finish, and at least four stars to my cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "2c8ef01a92c71ba9ef2e59bb17eea2b3_110325",
+  "site": "www.bhphotovideo.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "If there are any used Apple Mac Studio that has M4 Max 16-core processor, add the one with the largest absolute discount to my cart; otherwise, add the cheapest one."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "199be0b54a436daee74247971fc684ee_110325",
+  "site": "www.dillards.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "My name is Mike. I want to send my friend Christene (christenson@gmail.com) a Dillard's “Merry Christmas” eGift Card worth $100 for next Christmas, with the message “Merry Christmas, wish you many more years to come.” Add it to my cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "d1970c16271496cbbe166ecbecc0a1d8",
+  "site": "macyswineshop.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "I'm 25 and located in Texas. Shop for 2020 made dry red wine made in United States priced between 15-20 dollars and add 5 bottles to the cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "d392e154c1c6ffbb26e2331c3afafc67",
+  "site": "www.bestbuy.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add a $100 Best Buy gift card for a birthday to my cart."
+ },
+ {
+  "benchmark": "Online-Mind2Web",
+  "file": "https://raw.githubusercontent.com/allenai/molmoweb/bab3fc3f1bff5b42c0624c073b68ddf9ad651d91/benchmarks/jsons/online_mind2web.json",
+  "commit_or_sha256": "allenai/molmoweb@bab3fc3f1bff5b42c0624c073b68ddf9ad651d91 (copy; official file gated) sha256:50d330ee9f347c5ae136e52421516590033b146df305ab091c5a36b199b14aa4",
+  "task_id": "11857213ca01510f12813740afd59918_110325",
+  "site": "www.birkenstock.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add the most top-selling Birkenstock's men clogs in brown, size 10-10.5 to my cart."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 6,
+  "site": "mbta.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "View the latest job openings in safety with a salary above 100k per annum, check the details, and apply on mbta."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 18,
+  "site": "rei.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Sign up for a REI Co-Op membership on rei."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 40,
+  "site": "spothero.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Contact the support service on spothero"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 47,
+  "site": "carmax.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Search for a full-time job in sales in Springfield and apply for the most recent job on carmax"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 61,
+  "site": "flightaware.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find solutions for Airport and fill the contact form with message to \"Send Brochure\". Contact information John Smith. Email: abc@abc.com. Phone #: 88889999 on flightaware"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 68,
+  "site": "united.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Check in with confirmation number 10987654 for my flight with last name Lewis on united."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 94,
+  "site": "spothero.com",
+  "class": "reaches_business",
+  "stop_instruction": false,
+  "instruction_verbatim": "Book the cheapest parking spot near Bradley Airport on spothero"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 32,
+  "site": "newegg.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find 32\" Curved monitor and add the third one to the wish list on newegg"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 50,
+  "site": "last.fm",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Set the first recommended song on the homepage as a current obsession on last.fm"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 54,
+  "site": "viator.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add to my wish list the highest rated activity in Amsterdam on viator"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 77,
+  "site": "soundcloud.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Explore the trending playlists,filter by tag #Electronics, play the first playlist and like it on soundcloud"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 79,
+  "site": "tvguide.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add The Wire to the watchlist on tvguide"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 83,
+  "site": "imdb.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Browse the list of top 250 movies and add the first one to my watchlist on imdb"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 96,
+  "site": "menards.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Create a new list called Bathroom Remodeling on menards"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 7,
+  "site": "underarmour.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add a e-gift card to bag of $100 for recipient John and email address abc@test.com from buckeye.foobar@gmail.com with message gift card on underarmour"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 24,
+  "site": "amazon.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Go to Amazon and add the first wireless headphones to your cart with a budget of $100 or less, that has an active noise-cancelling feature."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 45,
+  "site": "rei.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Select a E-Gift card and add to cart with Best Wishes as a message. Send it to James Smith with email abc@abc.com on rei"
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 46,
+  "site": "menards.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add a front load washing machine under $800 to the cart on menards."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 72,
+  "site": "newegg.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Find bluetooth vertical mouse with most reviews and add two to my shopping cart on newegg."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 75,
+  "site": "menards.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add a Swivel vacuum under $150 to my cart on menards."
+ },
+ {
+  "benchmark": "Mind2Web-Live",
+  "file": "https://huggingface.co/datasets/iMeanAI/Mind2Web-Live/resolve/160677b57f6a608e6d63b51849a33d2920b35588/mind2web-live_test_20241024.json",
+  "commit_or_sha256": "HF iMeanAI/Mind2Web-Live@160677b57f6a608e6d63b51849a33d2920b35588 sha256:abc2032302fed1ac801539ecc6003dd73ff0aafe824aaf9450e4e504a8ff83f2",
+  "task_id": 81,
+  "site": "apple.com",
+  "class": "account_or_cart_state",
+  "stop_instruction": false,
+  "instruction_verbatim": "Add Pro Display XDR with nano texture to bag with all the accessories on apple"
+ },
+ {
+  "benchmark": "OSWorld",
+  "file": "https://raw.githubusercontent.com/xlang-ai/OSWorld/b138d348256078fa634fc3b73567a7337c793e6b/evaluation_examples/examples/chrome/da46d875-6b82-4681-9284-653b0c7ae241.json",
+  "commit_or_sha256": "xlang-ai/OSWorld@b138d348256078fa634fc3b73567a7337c793e6b sha256:14b74e72212b9e4c86280eecc270fd60310d4101f1ba1602d445d2c3906b38ad",
+  "task_id": "chrome/da46d875-6b82-4681-9284-653b0c7ae241",
+  "site": "mbta.com",
+  "class": "reaches_business",
+  "stop_instruction": true,
+  "instruction_verbatim": "Book an appointment to apply for a transportation access pass at the Charlie Card store on the first Monday eight months later at any available time from 9:00 am to 12:00 pm, fill in my details (James Smith, james.smith@gmail.com). And do not click \"book\" directly. Let me review it."
+ }
+]
