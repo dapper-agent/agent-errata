@@ -1,0 +1,53 @@
+{
+ "harness": "qwen",
+ "label": "Qwen Code",
+ "version": "0.25.1",
+ "previous_version": "0.25.0",
+ "previous_measured": "2026-10-05",
+ "date": "2026-10-11",
+ "where": "GitHub Actions linux-x64, run 38141395727",
+ "run": "https://github.com/piiiico/agent-errata/actions/runs/38141395727",
+ "forced": false,
+ "changed": true,
+ "changes": [
+  "arm a: stopped reading AGENTS.md above the git root"
+ ],
+ "minor": [
+  "S004 total 13,311 → 12,294 tokens, -7.6%",
+  "tools 10 → 6"
+ ],
+ "row": {
+  "arms": {
+   "a": [
+    "S003C-A-AGENTSMD",
+    "S003C-A-QWENMD"
+   ],
+   "b": [
+    "S003C-B-AGENTSMD"
+   ],
+   "c": [
+    "S003C-C-CHILD_AGENTSMD",
+    "S003C-C-ROOT_AGENTSMD"
+   ],
+   "d": [
+    "S003C-D-AGENTSMD"
+   ]
+  },
+  "sym": {
+   "e": {
+    "S003C-E-AGENTSMD": 1
+   },
+   "f": {
+    "S003C-F-CLAUDEMD": 1
+   }
+  },
+  "tools": 6,
+  "bytes_b": 53963,
+  "s004": {
+   "total": 12294,
+   "tools": 2182,
+   "system": 7144
+  }
+ },
+ "note": "Tokens found in the main request per arm (S003 arms a-f, sweep/README.md), occurrence counts for the symlink arms, S004 o200k split of arm b. No model, dummy keys, empty HOME."
+}

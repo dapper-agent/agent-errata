@@ -103,14 +103,13 @@
    }
   },
   "qwen": {
-   "version": "0.25.0",
-   "measured": "2026-10-05",
-   "where": "GitHub Actions linux-x64, run 37328063124",
+   "version": "0.25.1",
+   "measured": "2026-10-11",
+   "where": "GitHub Actions linux-x64, run 38141395727",
    "row": {
     "arms": {
      "a": [
       "S003C-A-AGENTSMD",
-      "S003C-A-PARENT_AGENTSMD",
       "S003C-A-QWENMD"
      ],
      "b": [
@@ -132,19 +131,19 @@
       "S003C-F-CLAUDEMD": 1
      }
     },
-    "tools": 10,
-    "bytes_b": 58614,
+    "tools": 6,
+    "bytes_b": 53963,
     "s004": {
-     "total": 13311,
-     "tools": 5518,
-     "system": 5087
+     "total": 12294,
+     "tools": 2182,
+     "system": 7144
     }
    }
   },
   "opencode": {
-   "version": "1.18.35",
-   "measured": "2026-10-07",
-   "where": "GitHub Actions linux-x64, run 37629359209",
+   "version": "1.19.0",
+   "measured": "2026-10-11",
+   "where": "GitHub Actions linux-x64, run 38141395727",
    "row": {
     "arms": {
      "a": [
