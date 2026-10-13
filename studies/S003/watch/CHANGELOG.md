@@ -2,6 +2,7 @@
 
 Re-measured on every release of the 10 harnesses in [S003](../../S003.md) and [S004](../../S004.md). Newest first. Daily run logs: https://github.com/piiiico/agent-errata/actions/workflows/harness-watch.yml
 
+- **2026-10-13** · pi 1.1.0 → 1.2.0: re-measured, unchanged (S004 total 1,551 → 1,551 tokens, +0.0%). [row](runs/2026-10-13-pi-1.2.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38412363033)
 - **2026-10-11** · Qwen Code 0.25.0 → 0.25.1: CHANGED: arm a: stopped reading AGENTS.md above the git root (S004 total 13,311 → 12,294 tokens, -7.6%, tools 10 → 6). [row](runs/2026-10-11-qwen-0.25.1.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38141395727)
 - **2026-10-11** · opencode 1.18.35 → 1.19.0: re-measured, unchanged (S004 total 7,263 → 7,263 tokens, +0.0%). [row](runs/2026-10-11-opencode-1.19.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38141395727)
 - **2026-10-10** · Codex CLI 0.162.0 → 0.162.1: re-measured, unchanged (S004 total 9,563 → 9,571 tokens, +0.1%). [row](runs/2026-10-10-codex-0.162.1.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38052779651)
