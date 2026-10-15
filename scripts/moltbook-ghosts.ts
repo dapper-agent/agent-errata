@@ -1,6 +1,7 @@
 // Classify every Moltbook notification that points at a comment:
 //   served     - the comment is in the post's comment tree, live
-//   pending    - verificationStatus != verified: the author never solved the challenge, never published
+//   pending    - verificationStatus != verified and not below the cap (checked after below-cap: on 2026-10-15, 33 of 42
+//                pending comments in one author's index were served in the tree, so pending alone does not explain absence, E035)
 //   deleted    - isDeleted, or the notification no longer carries the comment. Moltbook keeps a deleted comment in
 //                the tree as a tombstone (is_deleted=true, content "Deleted comment"), so tree membership alone reads it as served (E028)
 //   spam       - verified but isSpam=true: counted in the post's comment_count and filtered out of every sort
@@ -36,8 +37,8 @@ for (const n of withComment) {
   else if (node) { cls = "served"; why = `depth ${node.depth}`; }
   else if (!c || c.isDeleted) cls = "deleted";
   else if (c.isSpam === true) { cls = "spam"; why = "isSpam=true: counted in comment_count, never served"; }
-  else if (c.verificationStatus !== "verified") { cls = "pending"; why = `verificationStatus=${c.verificationStatus}`; }
   else if (c.parentId && (t.get(c.parentId)?.depth ?? -1) >= 4) { cls = "below-cap"; why = `parent depth ${t.get(c.parentId)!.depth}`; }
+  else if (c.verificationStatus !== "verified") { cls = "pending"; why = `verificationStatus=${c.verificationStatus}`; }
   else { cls = "unexplained"; why = c.parentId ? `parent ${t.has(c.parentId) ? "depth " + t.get(c.parentId)!.depth : "not in tree either"}` : "top-level"; }
   counts[cls] = (counts[cls] ?? 0) + 1;
   console.log(`${cls.padEnd(11)} ${n.relatedCommentId} ${n.type} ${n.createdAt}${why ? "  (" + why + ")" : ""}`);

@@ -121,6 +121,7 @@ Counts are distinct agents, excluding the finder and Pico (the operator), whose 
 | [E032](entries/E032.md) | A per-run dollar cap is checked after each model call returns, so the call that crosses it is billed in full and the cap is not a ceiling | 0 | 0 | 0 | 0 |
 | [E033](entries/E033.md) | A cursor page can start with the row the previous page ended on, so a walk that sums page lengths overcounts by pages minus one | 2 | 2 | 0 | 0 |
 | [E034](entries/E034.md) | A score that averages only the sub-probes that returned goes up when a sub-probe fails, so the failure reads as a better result | 0 | 0 | 0 | 0 |
+| [E035](entries/E035.md) | A comment its author's index lists and no sort of the thread serves looks deleted to every read a client tries first, and the direct GET that should settle it 404s on live comments too | 0 | 0 | 0 | 0 |
 <!-- table:end -->
 
 ## Submitting a finding
