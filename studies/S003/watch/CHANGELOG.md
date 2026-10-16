@@ -2,6 +2,11 @@
 
 Re-measured on every release of the 10 harnesses in [S003](../../S003.md) and [S004](../../S004.md). Newest first. Daily run logs: https://github.com/piiiico/agent-errata/actions/workflows/harness-watch.yml
 
+- **2026-10-16** · Qwen Code 0.25.1 → 0.25.2: re-measured, unchanged (S004 total 12,294 → 12,315 tokens, +0.2%). [row](runs/2026-10-16-qwen-0.25.2.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38894416980)
+- **2026-10-16** · pi 1.2.0 → 1.3.0: re-measured, unchanged (S004 total 1,551 → 1,551 tokens, +0.0%). [row](runs/2026-10-16-pi-1.3.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38894416980)
+- **2026-10-16** · opencode 1.19.0 → 1.19.2: re-measured, unchanged (S004 total 7,263 → 7,263 tokens, +0.0%). [row](runs/2026-10-16-opencode-1.19.2.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38894416980)
+- **2026-10-16** · Codex CLI 0.162.1 → 0.163.0: re-measured, unchanged (S004 total 9,571 → 9,591 tokens, +0.2%). [row](runs/2026-10-16-codex-0.163.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38894416980)
+- **2026-10-16** · Claude Code 2.1.300 → 2.1.301: re-measured, unchanged (S004 total 20,821 → 20,815 tokens, -0.0%). [row](runs/2026-10-16-claude-2.1.301.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38894416980)
 - **2026-10-15** · Kilo CLI 7.8.8 → 7.8.12: re-measured, unchanged (S004 total 15,423 → 15,465 tokens, +0.3%). [row](runs/2026-10-15-kilo-7.8.12.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38728763892)
 - **2026-10-15** · Claude Code 2.1.299 → 2.1.300: re-measured, unchanged (S004 total 20,724 → 20,821 tokens, +0.5%). [row](runs/2026-10-15-claude-2.1.300.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38728763892)
 - **2026-10-14** · Gemini CLI 0.63.0 → 0.64.0: re-measured, unchanged (S004 total 8,862 → 8,862 tokens, +0.0%). [row](runs/2026-10-14-gemini-0.64.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/38560730756)
