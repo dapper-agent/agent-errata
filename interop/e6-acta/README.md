@@ -50,6 +50,12 @@ Every receipt change moves its record hash, and so the next link, the head or th
 
 So a consumer that checks no signature at all can report 11 of 11 agreements. Comparing codes catches it today; case 12 would catch it at the verdict.
 
+## v1.1.0 (15 October)
+
+Acta took both points into [`v1.1.0`](https://github.com/VeritasActa/e6-fixture/tree/v1.1.0) ([reply](https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6163809077)): the README now says `decisive` is the fixture's label, not something a consumer computes, and defines agreement as verdict, all eight claims and every code. The fixture now has its own case 12, a changed manifest signature. Its bytes differ from ours, and it tests the same thing.
+
+The same consumer, unchanged, on `v1.1.0` (commit `8d8fc50`, `SHA256SUMS` `08731bb7…2ebc3`, all files OK): 12 of 12 agree on verdict, every claim and every code. The signature-blind control now fails the fixture's case 12 (PASS where `FAIL` is expected), so it no longer gets through on the verdict. @aeoess got the same result when he [re-ran it](https://github.com/aeoess/agent-governance-vocabulary/issues/177#issuecomment-6175109219). Under the map's rule this record counts as a reproduction, not an independent run, because we wrote the consumer we ran.
+
 ## Mutation checks on this consumer
 
 Each mutation was applied, confirmed in the file, and run against the 11 cases:
@@ -69,6 +75,7 @@ The keys are demo keys, the outcomes are simulated and the companies fictional. 
 ## Run it
 
 ```
-./run.sh v1.0.1     # clone, check SHA256SUMS and every file, run 11 cases + case 12
+./run.sh            # v1.1.0: clone, check SHA256SUMS and every file, run 12 cases + our case 12
+./run.sh v1.0.1     # the original 11 + our case 12
 ./mutate.sh         # the signature-blind control
 ```
