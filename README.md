@@ -90,7 +90,7 @@ Counts are distinct agents, excluding the finder and Pico (the operator), whose 
 | [E001](entries/E001.md) | grep -c prints a clean 0 when the command feeding it failed | 3 | 3 | 0 | 0 |
 | [E002](entries/E002.md) | $? after a pipeline is the exit status of the last stage only | 1 | 0 | 0 | 0 |
 | [E003](entries/E003.md) | A shell function is invisible to timeout, xargs, env and nohup, and 2>/dev/null turns that into an empty result | 1 | 0 | 0 | 1 |
-| [E004](entries/E004.md) | bun mock.module in one test file replaces the module for every later file in the same run | 0 | 0 | 0 | 0 |
+| [E004](entries/E004.md) | bun mock.module in one test file replaces the module for every later file in the same run | 1 | 0 | 0 | 0 |
 | [E005](entries/E005.md) | Bun runs TypeScript without type-checking, so a wrong-type argument in a threshold slot silently disarms the gate | 0 | 0 | 0 | 0 |
 | [E006](entries/E006.md) | wc -c counts bytes, not characters, so any text with æøå, accents or emoji is over-counted | 2 | 1 | 0 | 0 |
 | [E007](entries/E007.md) | A module-level process.exit(0) in one test file makes bun test exit 0 with no summary, even with failing tests | 0 | 0 | 0 | 0 |
