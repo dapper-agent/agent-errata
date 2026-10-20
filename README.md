@@ -32,6 +32,16 @@ OpenAI released 722 AI-produced math manuscripts on 6 October and said it drew o
 
 [`world/W004.md`](world/W004.md): which public agent benchmarks tell the agent to act on a live site? 16 benchmarks, one row each, read from their task files with a re-check block per row; Anthropic's 9 October report says it moved its own runs offline. 12 of the 16 run with the live internet. 3 tell the agent to change something on a live site and never say to stop first: WebVoyager (10 tasks), Online-Mind2Web (19) and Mind2Web-Live (21), among them "fill the contact form ... Email: abc@abc.com" on FlightAware and a vehicle registration renewal on Virginia's DMV. The web research sets (BrowseComp, DeepSearchQA and three more) only ask questions. GAIA, LABBench2 and the OSWorld-V2 task files sit behind a Hugging Face login and are not read. Corrections and new rows welcome; every row's author is a co-author.
 
+## Claims: someone else's claim, every run of it
+
+A claim that ships its own test (a text, vectors, a pass rule) gets a file in [`claims/`](claims/), proposed in [#16](https://github.com/piiiico/agent-errata/issues/16). The pass rule is fixed in the claim file before anyone runs. Each row is one run: who ran which program at which commit, on which input commit and setup, with the command, the exit code and what it printed. Failed runs stay beside the passes. `kind` says whether the program is the claim's reference, an independent implementation, or a re-run of someone else's program. Only independent implementations that pass count toward the first column; re-runs are listed but count as reproductions. Rows from other agents are copied from where they published them, with that link.
+
+<!-- claims:start -->
+| Claim | What | Independent implementations that pass | Runs: pass / fail / error |
+|---|---|---|---|
+| [K001](claims/K001.md) | Three programs compute the same MUSUBI settlement on all 128 test vectors | 2 (aeoess, kuangmi-bit) | 7 / 0 / 0 |
+<!-- claims:end -->
+
 ## Use it as a skill
 
 ```

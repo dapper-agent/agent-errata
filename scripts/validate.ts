@@ -95,12 +95,61 @@ for (const [id, e] of entries) {
   const distinct = (res: string, pred = (_: Row) => true) => new Set(rows.filter((r) => r.result === res && pred(r)).map((r) => r.agent)).size;
   table.push(`| [${id}](entries/${id}.md) | ${e.title.replace(/\|/g, "\\|")} | ${distinct("reproduces")} | ${distinct("reproduces", (r) => !!r.source)} | ${distinct("does-not-reproduce")} | ${distinct("not-applicable")} |`);
 }
+// Claims (claims/K###.md + K###.jsonl): an outside claim that ships its own test, and every run of it, failed runs included.
+// A row credits the run: who ran which program at which commit, on what, with what exit code.
+const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "proposed_by", "date"];
+const RUN_KEYS = ["claim", "result", "runner", "implementation", "implemented_by", "kind", "input", "command", "env", "observed", "date"];
+const claimTable = ["| Claim | What | Independent implementations that pass | Runs: pass / fail / error |", "|---|---|---|---|"];
+const claimDir = join(root, "claims");
+const claimFiles = existsSync(claimDir) ? readdirSync(claimDir).filter((f) => f.endsWith(".md") && f !== "README.md").sort() : [];
+for (const f of claimFiles) {
+  const where = `claims/${f}`, id = f.replace(/\.md$/, "");
+  if (!/^K\d{3}$/.test(id)) { err(where, "file name must be K###.md"); continue; }
+  const m = readFileSync(join(claimDir, f), "utf8").match(/^---\n([\s\S]*?)\n---\n/);
+  if (!m) { err(where, "missing frontmatter block"); continue; }
+  const fm: any = Bun.YAML.parse(m[1]) ?? {};
+  for (const k of CLAIM_KEYS) if (fm[k] === undefined || String(fm[k]).trim() === "") err(where, `missing or empty key: ${k}`);
+  for (const k of Object.keys(fm)) if (!CLAIM_KEYS.includes(k)) err(where, `unknown key: ${k}`);
+  if (fm.id !== id) err(where, `id "${fm.id}" does not match file name`);
+  const rf = join(claimDir, `${id}.jsonl`);
+  const lines = existsSync(rf) ? readFileSync(rf, "utf8").split("\n").filter((l) => l.trim()) : [];
+  if (!lines.length) err(`claims/${id}.jsonl`, "a claim needs at least one run row");
+  const runs: any[] = [];
+  lines.forEach((line, i) => {
+    const w = `claims/${id}.jsonl:${i + 1}`;
+    let r: any;
+    try { r = JSON.parse(line); } catch { err(w, "not valid JSON"); return; }
+    for (const k of RUN_KEYS) if (typeof r[k] !== "string" || !r[k].trim()) err(w, `missing string field: ${k}`);
+    for (const k of Object.keys(r)) if (![...RUN_KEYS, "exit_code", "source", "note"].includes(k)) err(w, `unknown field: ${k}`);
+    if (r.claim !== id) err(w, `claim "${r.claim}" does not match file ${id}`);
+    if (!["pass", "fail", "error"].includes(r.result)) err(w, "result must be pass, fail or error");
+    if (!["reference", "independent", "reproduction"].includes(r.kind)) err(w, "kind must be reference, independent or reproduction");
+    if (!DATE.test(r.date ?? "")) err(w, "date must be YYYY-MM-DD");
+    if (!/^https:\/\/\S+$/.test(r.implementation ?? "") || !/[0-9a-f]{7,40}/.test(r.implementation)) err(w, "implementation must be an https URL pinned to a commit");
+    if (!/^[0-9a-f]{7,40}$/.test(r.input ?? "")) err(w, "input must be the commit of the vectors the run read");
+    if (!(Number.isInteger(r.exit_code) || (r.exit_code === null && /exit code not reported/.test(r.note ?? "")))) err(w, "exit_code must be an integer, or null with a note saying 'exit code not reported'");
+    if (r.kind === "independent" && r.implemented_by === fm.claim_by) err(w, "the claim's author cannot be an independent implementation");
+    if (r.result === "pass" && Number.isInteger(r.exit_code) && r.exit_code !== 0) err(w, "a pass with a non-zero exit code is a fail");
+    if (r.runner !== OPERATOR && !/^https:\/\/\S+$/.test(r.source ?? "")) err(w, "a run by someone other than the operator needs a source URL where the runner published it");
+    runs.push(r);
+  });
+  const n = (res: string) => runs.filter((r) => r.result === res).length;
+  const indep = [...new Set(runs.filter((r) => r.kind === "independent" && r.result === "pass").map((r) => r.implemented_by))];
+  claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"}) | ${n("pass")} / ${n("fail")} / ${n("error")} |`);
+}
+
 const readmePath = join(root, "README.md");
 if (existsSync(readmePath)) {
-  const readme = readFileSync(readmePath, "utf8");
+  let readme = readFileSync(readmePath, "utf8");
   const re = /(<!-- table:start -->\n)[\s\S]*?(<!-- table:end -->)/;
+  const reK = /(<!-- claims:start -->\n)[\s\S]*?(<!-- claims:end -->)/;
   if (!re.test(readme)) err("README.md", "missing <!-- table:start --> / <!-- table:end --> markers");
-  else if (process.argv.includes("--write-readme")) writeFileSync(readmePath, readme.replace(re, `$1${table.join("\n")}\n$2`));
+  if (claimFiles.length && !reK.test(readme)) err("README.md", "missing <!-- claims:start --> / <!-- claims:end --> markers");
+  if (process.argv.includes("--write-readme") && re.test(readme)) {
+    readme = readme.replace(re, `$1${table.join("\n")}\n$2`);
+    if (reK.test(readme)) readme = readme.replace(reK, `$1${claimTable.join("\n")}\n$2`);
+    writeFileSync(readmePath, readme);
+  }
 }
 
 if (errors.length) {
@@ -109,4 +158,4 @@ if (errors.length) {
   process.exit(1);
 }
 const nRows = [...rowsByEntry.values()].reduce((a, r) => a + r.length, 0);
-console.log(`ok: ${entries.size} entries, ${nRows} replication rows`);
+console.log(`ok: ${entries.size} entries, ${nRows} replication rows, ${claimFiles.length} claims`);
