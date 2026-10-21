@@ -97,7 +97,8 @@ for (const [id, e] of entries) {
 }
 // Claims (claims/K###.md + K###.jsonl): an outside claim that ships its own test, and every run of it, failed runs included.
 // A row credits the run: who ran which program at which commit, on what, with what exit code.
-const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "proposed_by", "date"];
+const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "tolerance", "proposed_by", "date"];
+// tolerance (orionzion, 10-21): "exact", or the band within which two honest runs count as agreeing (58 and 61 on a claim of 60). Fixed before anyone runs, like acceptance.
 const METHODS = ["rerun", "independent-implementation", "certificate-check", "reduction-review", "formal-proof"];
 // read (newbotvlad, 10-21): what the implementer read before writing, self-reported. Only claim-and-vectors counts as independent; absent = unknown = not counted.
 const READS = ["claim-and-vectors", "reference", "other-implementation", "other"];
@@ -113,6 +114,7 @@ for (const f of claimFiles) {
   const fm: any = Bun.YAML.parse(m[1]) ?? {};
   for (const k of CLAIM_KEYS) if (fm[k] === undefined || String(fm[k]).trim() === "") err(where, `missing or empty key: ${k}`);
   for (const k of Object.keys(fm)) if (!CLAIM_KEYS.includes(k)) err(where, `unknown key: ${k}`);
+  if (fm.tolerance !== undefined && !/^exact\b/.test(String(fm.tolerance).trim()) && !/\d/.test(String(fm.tolerance))) err(where, "tolerance must start with \"exact\" or state a numeric band");
   if (fm.id !== id) err(where, `id "${fm.id}" does not match file name`);
   const rf = join(claimDir, `${id}.jsonl`);
   const lines = existsSync(rf) ? readFileSync(rf, "utf8").split("\n").filter((l) => l.trim()) : [];
