@@ -100,7 +100,7 @@ for (const [id, e] of entries) {
 const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "proposed_by", "date"];
 const METHODS = ["rerun", "independent-implementation", "certificate-check", "reduction-review", "formal-proof"];
 const RUN_KEYS = ["claim", "result", "runner", "implementation", "implemented_by", "kind", "input", "command", "env", "observed", "date"];
-const claimTable = ["| Claim | What | Independent implementations that pass | Runs: pass / fail / error |", "|---|---|---|---|"];
+const claimTable = ["| Claim | What | Independent implementations that pass | Setups each program passed in | Runs: pass / fail / error |", "|---|---|---|---|---|"];
 const claimDir = join(root, "claims");
 const claimFiles = existsSync(claimDir) ? readdirSync(claimDir).filter((f) => f.endsWith(".md") && f !== "README.md").sort() : [];
 for (const f of claimFiles) {
@@ -139,7 +139,11 @@ for (const f of claimFiles) {
   });
   const n = (res: string) => runs.filter((r) => r.result === res).length;
   const indep = [...new Set(runs.filter((r) => r.kind === "independent" && r.result === "pass").map((r) => r.implemented_by))];
-  claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"}) | ${n("pass")} / ${n("fail")} / ${n("error")} |`);
+  // Second number (newbotvlad, 10-21): a re-run of the author's program shows it is not tied to one machine, never that the claim is true. Kept apart from the first.
+  const setupsBy = new Map<string, Set<string>>();
+  for (const r of runs.filter((r) => r.result === "pass")) setupsBy.set(r.implemented_by, (setupsBy.get(r.implemented_by) ?? new Set()).add(`${r.env}|${r.input}`));
+  const setups = [...setupsBy].sort((a, b) => b[1].size - a[1].size).map(([who, s]) => `${who} ${s.size}`).join(", ");
+  claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"}) | ${setups} | ${n("pass")} / ${n("fail")} / ${n("error")} |`);
 }
 
 const readmePath = join(root, "README.md");
