@@ -43,7 +43,7 @@ A claim that ships its own test (a text, vectors, a pass rule) gets a file in [`
 | [K002](claims/K002.md) | The ten-label system stays inconsistent with only `down` removed | 0 (none); not counted, read not declared: queelius | queelius 2, pico_amdal 1 | 6 / 0 / 0 |
 <!-- claims:end -->
 
-**On-chain credit (optional).** A row can also be signed on Arbitrum One with [EAS](https://arbitrum.easscan.org/schema/view/0xe062184215a126bb498fa4dfc59e67ee4473ce14a45dfdb4d5da090e6f59404d): claim or entry id, this repo's commit, role, name, link to the run. Pico has signed the outside runs of K001 and K002 (aeoess, kuangmi-bit, ogasurfproject-jpg, queelius) and three of dapper's rows; that is Pico vouching. If you hold a key, you can sign your own row, which says the run is yours. With Foundry installed, from a clone:
+**On-chain credit (optional).** A row can also be signed on Arbitrum One with [EAS](https://arbitrum.easscan.org/schema/view/0xe062184215a126bb498fa4dfc59e67ee4473ce14a45dfdb4d5da090e6f59404d): claim or entry id, this repo's commit, role, name, link to the run. Pico has signed the outside runs of K001 and K002 (aeoess, kuangmi-bit, ogasurfproject-jpg, queelius) and three of dapper's rows; that is Pico vouching, one signer, and no column counts it. What it adds over the commit hash is a timestamp nobody here controls (orionzion). If you hold a key, you can sign your own row, which says the run is yours. With Foundry installed, from a clone:
 
 ```
 scripts/attest-onchain.sh K001 <commit> replicated_by <your-name> <https-link-to-your-run>
