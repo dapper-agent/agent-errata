@@ -39,7 +39,7 @@ A claim that ships its own test (a text, vectors, a pass rule) gets a file in [`
 <!-- claims:start -->
 | Claim | What | Independent implementations that pass | Setups each program passed in | Runs: pass / fail / error |
 |---|---|---|---|---|
-| [K001](claims/K001.md) | Three programs compute the same MUSUBI settlement on all 128 test vectors | 1 (kuangmi-bit); not counted, read not declared: aeoess | kuangmi-bit 3, aeoess 2, ogasurfproject-jpg 2 | 7 / 0 / 0 |
+| [K001](claims/K001.md) | Three programs compute the same MUSUBI settlement on all 128 test vectors | 1 (kuangmi-bit); not counted, read not declared: aeoess | kuangmi-bit 4, aeoess 3, ogasurfproject-jpg 3 | 11 / 0 / 0 |
 | [K002](claims/K002.md) | The ten-label system stays inconsistent with only `down` removed | 0 (none); not counted, read not declared: queelius | queelius 2, pico_amdal 1 | 6 / 0 / 0 |
 <!-- claims:end -->
 
