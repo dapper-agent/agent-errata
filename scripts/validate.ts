@@ -99,6 +99,8 @@ for (const [id, e] of entries) {
 // A row credits the run: who ran which program at which commit, on what, with what exit code.
 const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "proposed_by", "date"];
 const METHODS = ["rerun", "independent-implementation", "certificate-check", "reduction-review", "formal-proof"];
+// read (newbotvlad, 10-21): what the implementer read before writing, self-reported. Only claim-and-vectors counts as independent; absent = unknown = not counted.
+const READS = ["claim-and-vectors", "reference", "other-implementation", "other"];
 const RUN_KEYS = ["claim", "result", "runner", "implementation", "implemented_by", "kind", "input", "command", "env", "observed", "date"];
 const claimTable = ["| Claim | What | Independent implementations that pass | Setups each program passed in | Runs: pass / fail / error |", "|---|---|---|---|---|"];
 const claimDir = join(root, "claims");
@@ -121,10 +123,12 @@ for (const f of claimFiles) {
     let r: any;
     try { r = JSON.parse(line); } catch { err(w, "not valid JSON"); return; }
     for (const k of RUN_KEYS) if (typeof r[k] !== "string" || !r[k].trim()) err(w, `missing string field: ${k}`);
-    for (const k of Object.keys(r)) if (![...RUN_KEYS, "exit_code", "source", "note", "method", "shared_with"].includes(k)) err(w, `unknown field: ${k}`);
+    for (const k of Object.keys(r)) if (![...RUN_KEYS, "exit_code", "source", "note", "method", "shared_with", "read"].includes(k)) err(w, `unknown field: ${k}`);
     // method/shared_with (queelius, #16): different checks are different evidence, and a changed model or harness is not independence.
     if (r.method !== undefined && !(typeof r.method === "string" && r.method.split(",").every((x: string) => METHODS.includes(x.trim())))) err(w, `method must be one or more of: ${METHODS.join(", ")}`);
     if (r.method !== undefined && (typeof r.shared_with !== "string" || !r.shared_with.trim())) err(w, "a row with a method names what it shares with the other runs (shared_with), or 'nothing known'");
+    if (r.read !== undefined && !READS.includes(r.read)) err(w, `read must be one of: ${READS.join(", ")}`);
+    if (r.read === "other" && !String(r.note ?? "").trim()) err(w, "read: other needs a note saying what was read");
     if (r.claim !== id) err(w, `claim "${r.claim}" does not match file ${id}`);
     if (!["pass", "fail", "error"].includes(r.result)) err(w, "result must be pass, fail or error");
     if (!["reference", "independent", "reproduction"].includes(r.kind)) err(w, "kind must be reference, independent or reproduction");
@@ -138,12 +142,13 @@ for (const f of claimFiles) {
     runs.push(r);
   });
   const n = (res: string) => runs.filter((r) => r.result === res).length;
-  const indep = [...new Set(runs.filter((r) => r.kind === "independent" && r.result === "pass").map((r) => r.implemented_by))];
+  const indepBy = (f: (r: any) => boolean) => [...new Set(runs.filter((r) => r.kind === "independent" && r.result === "pass" && f(r)).map((r) => r.implemented_by))];
+  const indep = indepBy((r) => r.read === "claim-and-vectors"), undeclared = indepBy((r) => r.read === undefined);
   // Second number (newbotvlad, 10-21): a re-run of the author's program shows it is not tied to one machine, never that the claim is true. Kept apart from the first.
   const setupsBy = new Map<string, Set<string>>();
   for (const r of runs.filter((r) => r.result === "pass")) setupsBy.set(r.implemented_by, (setupsBy.get(r.implemented_by) ?? new Set()).add(`${r.env}|${r.input}`));
   const setups = [...setupsBy].sort((a, b) => b[1].size - a[1].size).map(([who, s]) => `${who} ${s.size}`).join(", ");
-  claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"}) | ${setups} | ${n("pass")} / ${n("fail")} / ${n("error")} |`);
+  claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"})${undeclared.length ? `; not counted, read not declared: ${undeclared.join(", ")}` : ""} | ${setups} | ${n("pass")} / ${n("fail")} / ${n("error")} |`);
 }
 
 const readmePath = join(root, "README.md");
