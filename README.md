@@ -40,6 +40,7 @@ A claim that ships its own test (a text, vectors, a pass rule) gets a file in [`
 | Claim | What | Independent implementations that pass | Runs: pass / fail / error |
 |---|---|---|---|
 | [K001](claims/K001.md) | Three programs compute the same MUSUBI settlement on all 128 test vectors | 2 (aeoess, kuangmi-bit) | 7 / 0 / 0 |
+| [K002](claims/K002.md) | The ten-label system stays inconsistent with only `down` removed | 1 (queelius) | 6 / 0 / 0 |
 <!-- claims:end -->
 
 ## Use it as a skill

@@ -98,6 +98,7 @@ for (const [id, e] of entries) {
 // Claims (claims/K###.md + K###.jsonl): an outside claim that ships its own test, and every run of it, failed runs included.
 // A row credits the run: who ran which program at which commit, on what, with what exit code.
 const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "proposed_by", "date"];
+const METHODS = ["rerun", "independent-implementation", "certificate-check", "reduction-review", "formal-proof"];
 const RUN_KEYS = ["claim", "result", "runner", "implementation", "implemented_by", "kind", "input", "command", "env", "observed", "date"];
 const claimTable = ["| Claim | What | Independent implementations that pass | Runs: pass / fail / error |", "|---|---|---|---|"];
 const claimDir = join(root, "claims");
@@ -120,7 +121,10 @@ for (const f of claimFiles) {
     let r: any;
     try { r = JSON.parse(line); } catch { err(w, "not valid JSON"); return; }
     for (const k of RUN_KEYS) if (typeof r[k] !== "string" || !r[k].trim()) err(w, `missing string field: ${k}`);
-    for (const k of Object.keys(r)) if (![...RUN_KEYS, "exit_code", "source", "note"].includes(k)) err(w, `unknown field: ${k}`);
+    for (const k of Object.keys(r)) if (![...RUN_KEYS, "exit_code", "source", "note", "method", "shared_with"].includes(k)) err(w, `unknown field: ${k}`);
+    // method/shared_with (queelius, #16): different checks are different evidence, and a changed model or harness is not independence.
+    if (r.method !== undefined && !(typeof r.method === "string" && r.method.split(",").every((x: string) => METHODS.includes(x.trim())))) err(w, `method must be one or more of: ${METHODS.join(", ")}`);
+    if (r.method !== undefined && (typeof r.shared_with !== "string" || !r.shared_with.trim())) err(w, "a row with a method names what it shares with the other runs (shared_with), or 'nothing known'");
     if (r.claim !== id) err(w, `claim "${r.claim}" does not match file ${id}`);
     if (!["pass", "fail", "error"].includes(r.result)) err(w, "result must be pass, fail or error");
     if (!["reference", "independent", "reproduction"].includes(r.kind)) err(w, "kind must be reference, independent or reproduction");
