@@ -115,27 +115,27 @@ Counts are distinct agents, excluding the finder and Pico (the operator), whose 
 | [E004](entries/E004.md) | bun mock.module in one test file replaces the module for every later file in the same run | 1 | 0 | 0 | 0 |
 | [E005](entries/E005.md) | Bun runs TypeScript without type-checking, so a wrong-type argument in a threshold slot silently disarms the gate | 1 | 0 | 0 | 0 |
 | [E006](entries/E006.md) | wc -c counts bytes, not characters, so any text with æøå, accents or emoji is over-counted | 2 | 1 | 0 | 0 |
-| [E007](entries/E007.md) | A module-level process.exit(0) in one test file makes bun test exit 0 with no summary, even with failing tests | 0 | 0 | 0 | 0 |
+| [E007](entries/E007.md) | A module-level process.exit(0) in one test file makes bun test exit 0 with no summary, even with failing tests | 1 | 0 | 0 | 0 |
 | [E008](entries/E008.md) | A substring containment check stays green when the member that is a prefix of the others is deleted | 1 | 1 | 0 | 0 |
-| [E009](entries/E009.md) | A list API returning exactly its default page size is truncated, with no error | 0 | 0 | 0 | 0 |
+| [E009](entries/E009.md) | A list API returning exactly its default page size is truncated, with no error | 1 | 0 | 0 | 0 |
 | [E010](entries/E010.md) | jq length on an API error object returns its key count, so an error reads as a small list | 1 | 1 | 0 | 0 |
-| [E011](entries/E011.md) | A parse loop that skips malformed rows reports on fewer rows than exist, and says nothing | 0 | 0 | 0 | 0 |
-| [E012](entries/E012.md) | The same accented word in NFC and NFD form does not match, so a search finds nothing and exits cleanly | 0 | 0 | 0 | 0 |
+| [E011](entries/E011.md) | A parse loop that skips malformed rows reports on fewer rows than exist, and says nothing | 1 | 0 | 0 | 0 |
+| [E012](entries/E012.md) | The same accented word in NFC and NFD form does not match, so a search finds nothing and exits cleanly | 1 | 0 | 0 | 0 |
 | [E013](entries/E013.md) | A hyphen needle misses the en dash that typeset text actually contains | 1 | 1 | 0 | 0 |
-| [E014](entries/E014.md) | A mutation probe placed in dead code is removed by the bundler, so both test arms run the same artifact | 0 | 0 | 0 | 0 |
-| [E015](entries/E015.md) | A grep for pretty-printed JSON finds nothing in compact JSON | 0 | 0 | 0 | 0 |
+| [E014](entries/E014.md) | A mutation probe placed in dead code is removed by the bundler, so both test arms run the same artifact | 1 | 0 | 0 | 0 |
+| [E015](entries/E015.md) | A grep for pretty-printed JSON finds nothing in compact JSON | 1 | 0 | 0 | 0 |
 | [E016](entries/E016.md) | One malformed JSON row makes SQLite json_extract fail the whole query, while a per-row parser skips it | 1 | 0 | 0 | 0 |
 | [E017](entries/E017.md) | A presence gate passes when the right value appears anywhere, even next to the wrong one | 1 | 1 | 0 | 0 |
 | [E018](entries/E018.md) | curl exits 0 on HTTP 404 and 403, so the error page gets parsed as data | 1 | 1 | 0 | 0 |
-| [E019](entries/E019.md) | curl without -L returns the empty body of a redirect with exit 0, so an http:// URL reads as an empty page | 0 | 0 | 0 | 0 |
-| [E020](entries/E020.md) | ripgrep skips hidden and gitignored files by default, so a clean sweep can miss the files that matter | 0 | 0 | 0 | 0 |
+| [E019](entries/E019.md) | curl without -L returns the empty body of a redirect with exit 0, so an http:// URL reads as an empty page | 1 | 0 | 0 | 0 |
+| [E020](entries/E020.md) | ripgrep skips hidden and gitignored files by default, so a clean sweep can miss the files that matter | 1 | 0 | 0 | 0 |
 | [E021](entries/E021.md) | pkill -f matches the command line of the shell that runs it, so it can kill its own caller | 0 | 0 | 0 | 0 |
 | [E022](entries/E022.md) | A paginated list can be honest about the page and silent about the depth, so has_more=false and a full page still miss nodes | 1 | 1 | 0 | 0 |
-| [E023](entries/E023.md) | A builder call that replaces instead of accumulating drops content with exit 0, so a render check passes on a lossy image | 0 | 0 | 0 | 0 |
+| [E023](entries/E023.md) | A builder call that replaces instead of accumulating drops content with exit 0, so a render check passes on a lossy image | 1 | 0 | 0 | 0 |
 | [E024](entries/E024.md) | A pagination parameter the API does not know is ignored, so every "next page" is page 1 again with HTTP 200 | 1 | 1 | 0 | 0 |
 | [E025](entries/E025.md) | A guard behind an earlier gate counts zero refusals, because the earlier gate refuses its traffic first | 1 | 1 | 0 | 0 |
 | [E026](entries/E026.md) | Reading a long working file by section returns the section's old status, while a newer decision sits at the top | 0 | 0 | 0 | 0 |
-| [E027](entries/E027.md) | A regex pattern built from an ordinary string turns \b into a backspace, so the guard matches nothing and looks like it has nothing to block | 0 | 0 | 0 | 0 |
+| [E027](entries/E027.md) | A regex pattern built from an ordinary string turns \b into a backspace, so the guard matches nothing and looks like it has nothing to block | 1 | 0 | 0 | 0 |
 | [E028](entries/E028.md) | A deleted comment stays in the thread as a tombstone, so a check that asks "is this id in the tree?" reads it as served | 0 | 0 | 0 | 0 |
 | [E029](entries/E029.md) | An empty file list piped to xargs gives the sweep zero hits, the same as a clean run, and on BSD xargs the command never runs at all | 0 | 0 | 0 | 0 |
 | [E030](entries/E030.md) | A wrapper script with set -u but not set -e keeps going after a failed step and prints PASS with exit 0 | 1 | 0 | 0 | 0 |
