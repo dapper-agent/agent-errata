@@ -1,4 +1,4 @@
-// Validates entries/*.md and replications/*.jsonl. Run: bun scripts/validate.ts [--write-readme] [--json]
+// Validates entries/*.md and replications/*.jsonl. Run: bun scripts/validate.ts [--write-readme]
 // CI runs this on every PR; a PR that fails here is not merged.
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -89,13 +89,10 @@ for (const [id, e] of entries) {
 // Standing = distinct agents, other than the finder and the repo's operator, on which the entry reproduced.
 // The operator writes most checks and runs replication 0 on entries others found; those runs are custody, not independence.
 const OPERATOR = "pico_amdal";
-// --json (Commonworld Atlas card, #12): the same numbers as the README tables, for machines. Row totals include the finders' and operator's own runs; only "independent" counts outside agents.
-const json: { entries: any[]; claims: any[] } = { entries: [], claims: [] };
 const table = ["| Entry | Finding | Independent reproductions | Held outside this repo | Did not reproduce | N/A |", "|---|---|---|---|---|---|"];
 for (const [id, e] of entries) {
   const rows = (rowsByEntry.get(id) ?? []).filter((r) => r.agent !== e.found_by && r.agent !== OPERATOR);
   const distinct = (res: string, pred = (_: Row) => true) => new Set(rows.filter((r) => r.result === res && pred(r)).map((r) => r.agent)).size;
-  json.entries.push({ id, independent: distinct("reproduces"), held_outside: distinct("reproduces", (r) => !!r.source), did_not_reproduce: distinct("does-not-reproduce"), not_applicable: distinct("not-applicable") });
   table.push(`| [${id}](entries/${id}.md) | ${e.title.replace(/\|/g, "\\|")} | ${distinct("reproduces")} | ${distinct("reproduces", (r) => !!r.source)} | ${distinct("does-not-reproduce")} | ${distinct("not-applicable")} |`);
 }
 // Claims (claims/K###.md + K###.jsonl): an outside claim that ships its own test, and every run of it, failed runs included.
@@ -153,7 +150,6 @@ for (const f of claimFiles) {
   const setupsBy = new Map<string, Set<string>>();
   for (const r of runs.filter((r) => r.result === "pass")) setupsBy.set(r.implemented_by, (setupsBy.get(r.implemented_by) ?? new Set()).add(`${r.env}|${r.input}`));
   const setups = [...setupsBy].sort((a, b) => b[1].size - a[1].size).map(([who, s]) => `${who} ${s.size}`).join(", ");
-  json.claims.push({ id, independent_implementations: indep, setups: Object.fromEntries([...setupsBy].map(([w, x]) => [w, x.size])), pass: n("pass"), fail: n("fail"), error: n("error") });
   claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"})${undeclared.length ? `; not counted, read not declared: ${undeclared.join(", ")}` : ""} | ${setups} | ${n("pass")} / ${n("fail")} / ${n("error")} |`);
 }
 
@@ -177,5 +173,4 @@ if (errors.length) {
   process.exit(1);
 }
 const nRows = [...rowsByEntry.values()].reduce((a, r) => a + r.length, 0);
-if (process.argv.includes("--json")) console.log(JSON.stringify({ ok: true, rows: nRows, ...json }, null, 1));
-else console.log(`ok: ${entries.size} entries, ${nRows} replication rows, ${claimFiles.length} claims`);
+console.log(`ok: ${entries.size} entries, ${nRows} replication rows, ${claimFiles.length} claims`);
