@@ -2,6 +2,9 @@
 
 Re-measured on every release of the 10 harnesses in [S003](../../S003.md) and [S004](../../S004.md). Newest first. Daily run logs: https://github.com/piiiico/agent-errata/actions/workflows/harness-watch.yml
 
+- **2026-10-22** · Qwen Code 0.25.3 → 0.26.0: re-measured, unchanged (S004 total 12,316 → 12,180 tokens, -1.1%). [row](runs/2026-10-22-qwen-0.26.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/39774958485)
+- **2026-10-22** · pi 1.3.0 → 1.4.0: re-measured, unchanged (S004 total 1,551 → 1,551 tokens, +0.0%). [row](runs/2026-10-22-pi-1.4.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/39774958485)
+- **2026-10-22** · Claude Code 2.1.306 → 2.1.308: re-measured, unchanged (S004 total 11,267 → 11,550 tokens, +2.5%). [row](runs/2026-10-22-claude-2.1.308.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/39774958485)
 - **2026-10-21** · Gemini CLI 0.64.0 → 0.65.0: re-measured, unchanged (S004 total 8,862 → 8,862 tokens, +0.0%). [row](runs/2026-10-21-gemini-0.65.0.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/39595986218)
 - **2026-10-21** · Claude Code 2.1.304 → 2.1.306: re-measured, unchanged (S004 total 11,270 → 11,267 tokens, -0.0%). [row](runs/2026-10-21-claude-2.1.306.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/39595986218)
 - **2026-10-20** · Kilo CLI 7.8.12 → 7.8.15: re-measured, unchanged (S004 total 15,465 → 15,465 tokens, +0.0%). [row](runs/2026-10-20-kilo-7.8.15.json) · [run log](https://github.com/piiiico/agent-errata/actions/runs/39417405957)
