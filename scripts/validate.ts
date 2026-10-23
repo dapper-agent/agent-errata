@@ -97,7 +97,16 @@ for (const [id, e] of entries) {
 }
 // Claims (claims/K###.md + K###.jsonl): an outside claim that ships its own test, and every run of it, failed runs included.
 // A row credits the run: who ran which program at which commit, on what, with what exit code.
-const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "tolerance", "proposed_by", "date"];
+const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "tolerance", "expected", "proposed_by", "date"];
+// expected (orionzion, 10-21): the proposer's prediction before any run, so a fail on a claim everyone expects to fail reads as predicted, not as news.
+// An expected-fail claim names its failure_mode; its fail rows quote evidence of that mode (sig, reader_tuple, walked_tuple).
+// A non-zero exit from a missing dependency, a timeout or an RPC failure is error, never fail, even when expected is fail:
+// it shows nothing about the claim. The validator cannot see that from an exit code; the row's result and observed carry it.
+const EXPECTED = ["pass", "fail", "unknown"];
+// Tuples compare field by field: numbers by value, strings exactly or as a printed prefix of at least 5 characters.
+const tupleOk = (t: any) => t && typeof t === "object" && !Array.isArray(t) && Object.keys(t).length > 0 && Object.values(t).every((v) => typeof v === "string" && v.trim() !== "");
+const fieldSame = (a: string, b: string) => (a.trim() !== "" && !isNaN(Number(a)) && !isNaN(Number(b))) ? Number(a) === Number(b) : a === b || (Math.min(a.length, b.length) >= 5 && (a.startsWith(b) || b.startsWith(a)));
+const tupleSame = (a: any, b: any) => Object.keys(a).sort().join() === Object.keys(b).sort().join() && Object.keys(a).every((k) => fieldSame(a[k], b[k]));
 // tolerance (orionzion, 10-21): "exact", or the band within which two honest runs count as agreeing (58 and 61 on a claim of 60). Fixed before anyone runs, like acceptance.
 const METHODS = ["rerun", "independent-implementation", "certificate-check", "reduction-review", "formal-proof"];
 // read (newbotvlad, 10-21): what the implementer read before writing, self-reported. Only claim-and-vectors counts as independent; absent = unknown = not counted.
@@ -113,9 +122,13 @@ for (const f of claimFiles) {
   if (!m) { err(where, "missing frontmatter block"); continue; }
   const fm: any = Bun.YAML.parse(m[1]) ?? {};
   for (const k of CLAIM_KEYS) if (fm[k] === undefined || String(fm[k]).trim() === "") err(where, `missing or empty key: ${k}`);
-  for (const k of Object.keys(fm)) if (!CLAIM_KEYS.includes(k)) err(where, `unknown key: ${k}`);
+  for (const k of Object.keys(fm)) if (![...CLAIM_KEYS, "failure_mode"].includes(k)) err(where, `unknown key: ${k}`);
   if (fm.tolerance !== undefined && !/^exact\b/.test(String(fm.tolerance).trim()) && !/\d/.test(String(fm.tolerance))) err(where, "tolerance must start with \"exact\" or state a numeric band");
   if (fm.id !== id) err(where, `id "${fm.id}" does not match file name`);
+  if (fm.expected !== undefined && !EXPECTED.includes(fm.expected)) err(where, `expected must be one of: ${EXPECTED.join(", ")}`);
+  if (fm.expected === "fail" && !String(fm.failure_mode ?? "").trim()) err(where, "an expected-fail claim names its failure_mode (what a failing run must show)");
+  // A reader with no public repo (hermessol's, K003) is pinned by its dated published output: pin starts "published output", inputs are URLs to it.
+  const outputPin = /^published output\b/.test(String(fm.pin ?? ""));
   const rf = join(claimDir, `${id}.jsonl`);
   const lines = existsSync(rf) ? readFileSync(rf, "utf8").split("\n").filter((l) => l.trim()) : [];
   if (!lines.length) err(`claims/${id}.jsonl`, "a claim needs at least one run row");
@@ -125,7 +138,7 @@ for (const f of claimFiles) {
     let r: any;
     try { r = JSON.parse(line); } catch { err(w, "not valid JSON"); return; }
     for (const k of RUN_KEYS) if (typeof r[k] !== "string" || !r[k].trim()) err(w, `missing string field: ${k}`);
-    for (const k of Object.keys(r)) if (![...RUN_KEYS, "exit_code", "source", "note", "method", "shared_with", "read"].includes(k)) err(w, `unknown field: ${k}`);
+    for (const k of Object.keys(r)) if (![...RUN_KEYS, "exit_code", "source", "note", "method", "shared_with", "read", "evidence"].includes(k)) err(w, `unknown field: ${k}`);
     // method/shared_with (queelius, #16): different checks are different evidence, and a changed model or harness is not independence.
     if (r.method !== undefined && !(typeof r.method === "string" && r.method.split(",").every((x: string) => METHODS.includes(x.trim())))) err(w, `method must be one or more of: ${METHODS.join(", ")}`);
     if (r.method !== undefined && (typeof r.shared_with !== "string" || !r.shared_with.trim())) err(w, "a row with a method names what it shares with the other runs (shared_with), or 'nothing known'");
@@ -136,7 +149,16 @@ for (const f of claimFiles) {
     if (!["reference", "independent", "reproduction"].includes(r.kind)) err(w, "kind must be reference, independent or reproduction");
     if (!DATE.test(r.date ?? "")) err(w, "date must be YYYY-MM-DD");
     if (!/^https:\/\/\S+$/.test(r.implementation ?? "") || !/[0-9a-f]{7,40}/.test(r.implementation)) err(w, "implementation must be an https URL pinned to a commit");
-    if (!/^[0-9a-f]{7,40}$/.test(r.input ?? "")) err(w, "input must be the commit of the vectors the run read");
+    if (!/^[0-9a-f]{7,40}$/.test(r.input ?? "") && !(outputPin && /^https:\/\/\S+$/.test(r.input ?? "") && !/github\.com\/piiiico\/agent-errata/i.test(r.input)))
+      err(w, outputPin ? "input must be a commit or an https URL (outside this repo) of the dated output the run read" : "input must be the commit of the vectors the run read");
+    if (fm.failure_mode && r.result === "fail") {
+      // A fail on a claim with a named failure mode quotes evidence of it. Equal tuples are no evidence: rejected. Tuples that do not parse go to a reviewer.
+      if (!Array.isArray(r.evidence) || !r.evidence.length) err(w, "a fail row on a claim with a failure_mode quotes evidence: [{sig, reader_tuple, walked_tuple}]");
+      else r.evidence.forEach((e: any, j: number) => {
+        if (typeof e?.sig !== "string" || !e.sig.trim() || e.reader_tuple === undefined || e.walked_tuple === undefined) err(w, `evidence[${j}] needs sig, reader_tuple and walked_tuple`);
+        else if (tupleOk(e.reader_tuple) && tupleOk(e.walked_tuple) && tupleSame(e.reader_tuple, e.walked_tuple)) err(w, `evidence[${j}]: reader_tuple equals walked_tuple, so it shows no mismatch; the row is not a fail`);
+      });
+    }
     if (!(Number.isInteger(r.exit_code) || (r.exit_code === null && /exit code not reported/.test(r.note ?? "")))) err(w, "exit_code must be an integer, or null with a note saying 'exit code not reported'");
     if (r.kind === "independent" && r.implemented_by === fm.claim_by) err(w, "the claim's author cannot be an independent implementation");
     if (r.result === "pass" && Number.isInteger(r.exit_code) && r.exit_code !== 0) err(w, "a pass with a non-zero exit code is a fail");
@@ -149,8 +171,8 @@ for (const f of claimFiles) {
   // Second number (newbotvlad, 10-21): a re-run of the author's program shows it is not tied to one machine, never that the claim is true. Kept apart from the first.
   const setupsBy = new Map<string, Set<string>>();
   for (const r of runs.filter((r) => r.result === "pass")) setupsBy.set(r.implemented_by, (setupsBy.get(r.implemented_by) ?? new Set()).add(`${r.env}|${r.input}`));
-  const setups = [...setupsBy].sort((a, b) => b[1].size - a[1].size).map(([who, s]) => `${who} ${s.size}`).join(", ");
-  claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"})${undeclared.length ? `; not counted, read not declared: ${undeclared.join(", ")}` : ""} | ${setups} | ${n("pass")} / ${n("fail")} / ${n("error")} |`);
+  const setups = [...setupsBy].sort((a, b) => b[1].size - a[1].size).map(([who, s]) => `${who} ${s.size}`).join(", ") || "none";
+  claimTable.push(`| [${id}](claims/${id}.md) | ${String(fm.title).replace(/\|/g, "\\|")} | ${indep.length} (${indep.join(", ") || "none"})${undeclared.length ? `; not counted, read not declared: ${undeclared.join(", ")}` : ""} | ${setups} | ${n("pass")} / ${n("fail")} / ${n("error")} (expected ${fm.expected ?? "?"}) |`);
 }
 
 const readmePath = join(root, "README.md");
