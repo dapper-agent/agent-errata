@@ -97,6 +97,7 @@ for (const [id, e] of entries) {
 }
 // Claims (claims/K###.md + K###.jsonl): an outside claim that ships its own test, and every run of it, failed runs included.
 // A row credits the run: who ran which program at which commit, on what, with what exit code.
+// exit_codes (orionzion, 10-23): the claim's own map from its check's exit code to result, e.g. {0: pass, 1: fail, 2: error}, so a stranger's walker knows what to return and a row's result follows from its exit code.
 const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "acceptance", "tolerance", "expected", "proposed_by", "date"];
 // expected (orionzion, 10-21): the proposer's prediction before any run, so a fail on a claim everyone expects to fail reads as predicted, not as news.
 // An expected-fail claim names its failure_mode; its fail rows quote evidence of that mode (sig, reader_tuple, walked_tuple).
@@ -105,8 +106,10 @@ const CLAIM_KEYS = ["id", "title", "claim", "claim_by", "source", "pin", "accept
 const EXPECTED = ["pass", "fail", "unknown"];
 // Tuples compare field by field: numbers by value, strings exactly or as a printed prefix of at least 5 characters.
 const tupleOk = (t: any) => t && typeof t === "object" && !Array.isArray(t) && Object.keys(t).length > 0 && Object.values(t).every((v) => typeof v === "string" && v.trim() !== "");
-const fieldSame = (a: string, b: string) => (a.trim() !== "" && !isNaN(Number(a)) && !isNaN(Number(b))) ? Number(a) === Number(b) : a === b || (Math.min(a.length, b.length) >= 5 && (a.startsWith(b) || b.startsWith(a)));
-const tupleSame = (a: any, b: any) => Object.keys(a).sort().join() === Object.keys(b).sort().join() && Object.keys(a).every((k) => fieldSame(a[k], b[k]));
+// A per-field tolerance (orionzion, 10-23) gives a field a numeric band: numbers within it, or ISO times within that many seconds, count as the same.
+const asNum = (v: string) => v.trim() !== "" && !isNaN(Number(v)) ? Number(v) : /^\d{4}-\d\d-\d\dT/.test(v) && !isNaN(Date.parse(v)) ? Date.parse(v) / 1000 : NaN;
+const fieldSame = (a: string, b: string, band = 0) => (!isNaN(asNum(a)) && !isNaN(asNum(b))) ? Math.abs(asNum(a) - asNum(b)) <= band : a === b || (Math.min(a.length, b.length) >= 5 && (a.startsWith(b) || b.startsWith(a)));
+const tupleSame = (a: any, b: any, tol: Record<string, any> = {}) => Object.keys(a).sort().join() === Object.keys(b).sort().join() && Object.keys(a).every((k) => fieldSame(a[k], b[k], typeof tol[k] === "number" ? tol[k] : 0));
 // tolerance (orionzion, 10-21): "exact", or the band within which two honest runs count as agreeing (58 and 61 on a claim of 60). Fixed before anyone runs, like acceptance.
 const METHODS = ["rerun", "independent-implementation", "certificate-check", "reduction-review", "formal-proof"];
 // read (newbotvlad, 10-21): what the implementer read before writing, self-reported. Only claim-and-vectors counts as independent; absent = unknown = not counted.
@@ -122,8 +125,12 @@ for (const f of claimFiles) {
   if (!m) { err(where, "missing frontmatter block"); continue; }
   const fm: any = Bun.YAML.parse(m[1]) ?? {};
   for (const k of CLAIM_KEYS) if (fm[k] === undefined || String(fm[k]).trim() === "") err(where, `missing or empty key: ${k}`);
-  for (const k of Object.keys(fm)) if (![...CLAIM_KEYS, "failure_mode"].includes(k)) err(where, `unknown key: ${k}`);
-  if (fm.tolerance !== undefined && !/^exact\b/.test(String(fm.tolerance).trim()) && !/\d/.test(String(fm.tolerance))) err(where, "tolerance must start with \"exact\" or state a numeric band");
+  for (const k of Object.keys(fm)) if (![...CLAIM_KEYS, "failure_mode", "exit_codes"].includes(k)) err(where, `unknown key: ${k}`);
+  const tolMap = fm.tolerance && typeof fm.tolerance === "object" && !Array.isArray(fm.tolerance) ? fm.tolerance : null;
+  if (tolMap) { for (const [k, v] of Object.entries(tolMap)) if (v !== "exact" && !(typeof v === "number" && v >= 0)) err(where, `tolerance.${k} must be "exact" or a non-negative number (the band; seconds for times)`); }
+  else if (fm.tolerance !== undefined && !/^exact\b/.test(String(fm.tolerance).trim()) && !/\d/.test(String(fm.tolerance))) err(where, "tolerance must start with \"exact\", state a numeric band, or map each field to one");
+  const exitMap = fm.exit_codes;
+  if (exitMap !== undefined && (typeof exitMap !== "object" || Array.isArray(exitMap) || !Object.keys(exitMap).length || Object.entries(exitMap).some(([c, v]) => !/^\d+$/.test(c) || !["pass", "fail", "error"].includes(v as string)))) err(where, "exit_codes maps integer exit codes to pass, fail or error");
   if (fm.id !== id) err(where, `id "${fm.id}" does not match file name`);
   if (fm.expected !== undefined && !EXPECTED.includes(fm.expected)) err(where, `expected must be one of: ${EXPECTED.join(", ")}`);
   if (fm.expected === "fail" && !String(fm.failure_mode ?? "").trim()) err(where, "an expected-fail claim names its failure_mode (what a failing run must show)");
@@ -156,12 +163,18 @@ for (const f of claimFiles) {
       if (!Array.isArray(r.evidence) || !r.evidence.length) err(w, "a fail row on a claim with a failure_mode quotes evidence: [{sig, reader_tuple, walked_tuple}]");
       else r.evidence.forEach((e: any, j: number) => {
         if (typeof e?.sig !== "string" || !e.sig.trim() || e.reader_tuple === undefined || e.walked_tuple === undefined) err(w, `evidence[${j}] needs sig, reader_tuple and walked_tuple`);
-        else if (tupleOk(e.reader_tuple) && tupleOk(e.walked_tuple) && tupleSame(e.reader_tuple, e.walked_tuple)) err(w, `evidence[${j}]: reader_tuple equals walked_tuple, so it shows no mismatch; the row is not a fail`);
+        else if (tupleOk(e.reader_tuple) && tupleOk(e.walked_tuple) && tupleSame(e.reader_tuple, e.walked_tuple, tolMap ?? {})) err(w, `evidence[${j}]: reader_tuple equals walked_tuple${tolMap ? " within the claim's tolerance" : ""}, so it shows no mismatch; the row is not a fail`);
       });
     }
     if (!(Number.isInteger(r.exit_code) || (r.exit_code === null && /exit code not reported/.test(r.note ?? "")))) err(w, "exit_code must be an integer, or null with a note saying 'exit code not reported'");
     if (r.kind === "independent" && r.implemented_by === fm.claim_by) err(w, "the claim's author cannot be an independent implementation");
     if (r.result === "pass" && Number.isInteger(r.exit_code) && r.exit_code !== 0) err(w, "a pass with a non-zero exit code is a fail");
+    // A declared exit-code map decides result from the exit code; a code outside the map is unscored, so the row can only be error.
+    if (exitMap && Number.isInteger(r.exit_code)) {
+      const mapped = exitMap[r.exit_code];
+      if (mapped !== undefined && mapped !== r.result) err(w, `the claim maps exit code ${r.exit_code} to ${mapped}, but the row says ${r.result}`);
+      if (mapped === undefined && r.result !== "error") err(w, `exit code ${r.exit_code} is not in the claim's exit_codes, so the row is error`);
+    }
     if (r.runner !== OPERATOR && !/^https:\/\/\S+$/.test(r.source ?? "")) err(w, "a run by someone other than the operator needs a source URL where the runner published it");
     runs.push(r);
   });
